@@ -22,7 +22,7 @@ public void draw() {
 	translate(0, 0, zoom);
 	sierpinski(xPos, yPos, maxSize);
 	
-	System.out.println(zoom);
+	
 	//bound += 2;
 }
 public void mouseDragged() {//optional
