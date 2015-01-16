@@ -57,7 +57,7 @@ public void draw() {
 
 	
 		background(255);
-		//rotateX(radians(xAxis));
+		rotateX(radians(xAxis));
 		//sierpinski(xPos, yPos, maxSize);
 		translate(0, 0, zoom);
 		sierpinski(xPos, yPos, maxSize);

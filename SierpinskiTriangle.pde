@@ -9,7 +9,7 @@ public void setup() {
 	yPos = 3200;
 	maxSize = 6400;
 	zoom = -5490;
-	xAxis = 55;
+	xAxis = 0;
 
 	menu = true;
 	display = false;
@@ -46,8 +46,7 @@ public void draw() {
 		translate(0, 0, zoom);
 		sierpinski(xPos, yPos, maxSize);
 	
-		//System.out.println(zoomMod);
-		//bound += 2;
+		
 	}
 	
 }
