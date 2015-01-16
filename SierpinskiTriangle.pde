@@ -1,29 +1,55 @@
-int bound, maxSize, xPos, yPos, zoom, xAxis, yAxis;
+int bound, maxSize, xPos, yPos, zoom, xAxis, yAxis, zoomMod;
+boolean menu, display;
 
 public void setup() {
-	size(800, 800, P3D);
+	size(900, 900, P3D);
 	background(255);
-	bound = 5;
-	xPos = 0;
-	yPos = 750;
+	bound = 1000;
+	xPos = -3000;
+	yPos = 3200;
 	maxSize = 6400;
-	zoom = -2000;
+	zoom = -5490;
 	xAxis = 55;
 
+	menu = true;
+	display = false;
+	frameRate(5);
 
 	//translate(100, 100);
 	//translate(width/2, height/2);
 	
 }
 public void draw() {
-	fill(0);
-	background(255);
-	rotateX(radians(xAxis));
-	translate(0, 0, zoom);
-	sierpinski(xPos, yPos, maxSize);
+	if (menu) {
+		background(255);
+		textSize(80);
+		stroke(0);
+		fill(0);
+		text("CONTROLS", width/2, 200);
+		textSize(20);
+		textAlign(CENTER);
+		text("Left Mouse Button to simplify figure, Right to add more triangles.", width/2, 300);
+		text("WASD to move the screen.", width/2, 400);
+		text("Q/E to zoom in and out.", width/2, 500);
+		text("R/F to rotate triangle away from you.", width/2, 600);
+		text("===Press Space to continue.===", width/2, 700);
+
+	} else if (display) {
+		zoomMod = zoom/4;
+		if (zoom > 500) {zoom = 500;}
+		if (zoom < -16000) {zoom = -4000;}
+
 	
+		background(255);
+		rotateX(radians(xAxis));
+		//sierpinski(xPos, yPos, maxSize);
+		translate(0, 0, zoom);
+		sierpinski(xPos, yPos, maxSize);
 	
-	//bound += 2;
+		//System.out.println(zoomMod);
+		//bound += 2;
+	}
+	
 }
 public void mouseDragged() {//optional
 }
@@ -34,6 +60,9 @@ public void sierpinski(int x, int y, int len) {
 		sierpinski(x + len/2, y, len/2);
 		sierpinski(x + len/4, (int)(y - (len/2)*(sqrt(3)/2)), len/2);
 	} else {
+		if (Math.random() > 0.99) {
+			fill( (int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255) );
+		}
 		triangle(x, y, x + len, y, x + len/2, y - (len)*(sqrt(3)/2));
 	}
 }
@@ -43,14 +72,15 @@ public void mousePressed() {
 	if (mouseButton == CENTER) {}
 }
 public void keyPressed() {
-	if (key == 'd') {xPos -= 5;}
-	if (key == 'a') {xPos += 5;}
-	if (key == 's') {yPos -= 5;}
-	if (key == 'w') {yPos += 5;}
+	if (key == 'd') {xPos -= zoomMod;}
+	if (key == 'a') {xPos += zoomMod;}
+	if (key == 's') {yPos -= zoomMod;}
+	if (key == 'w') {yPos += zoomMod;}
 	if (key == 'q') {zoom += 20;}
 	if (key == 'e') {zoom -= 20;}
 	if (key == 'r') {xAxis += 5;}
 	if (key == 'f') {xAxis -= 5;}
+	if (keyCode == 32) {menu = false; display = true;}
 }
 
 /*sierpinski(x, y, x + len/2, y, x + len/4, y - (len/2)*(sqrt(3)/2));
