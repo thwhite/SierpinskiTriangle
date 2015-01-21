@@ -15,7 +15,7 @@ import java.io.IOException;
 public class SierpinskiTriangle extends PApplet {
 
 int bound, maxSize, xPos, yPos, zoom, xAxis, yAxis, zoomMod;
-boolean menu, display;
+boolean menu, display, starWars;
 
 public void setup() {
 	size(900, 900, P3D);
@@ -29,10 +29,9 @@ public void setup() {
 
 	menu = true;
 	display = false;
+	starWars = false;
 	frameRate(5);
 
-	//translate(100, 100);
-	//translate(width/2, height/2);
 	
 }
 public void draw() {
@@ -51,14 +50,19 @@ public void draw() {
 		text("===Press Space to continue.===", width/2, 700);
 
 	} else if (display) {
+		if (starWars) {
+			xAxis = 55;
+			zoom = -900;
+			yPos -= 200;
+		}
+
 		zoomMod = zoom/4;
 		if (zoom > 500) {zoom = 500;}
 		if (zoom < -16000) {zoom = -4000;}
 
-	
 		background(255);
 		rotateX(radians(xAxis));
-		//sierpinski(xPos, yPos, maxSize);
+		
 		translate(0, 0, zoom);
 		sierpinski(xPos, yPos, maxSize);
 	
@@ -96,6 +100,7 @@ public void keyPressed() {
 	if (key == 'r') {xAxis += 5;}
 	if (key == 'f') {xAxis -= 5;}
 	if (keyCode == 32) {menu = false; display = true;}
+	if (key == 'z') {starWars = true;}
 }
 
 /*sierpinski(x, y, x + len/2, y, x + len/4, y - (len/2)*(sqrt(3)/2));
