@@ -5,7 +5,7 @@ public void setup() {
 	size(900, 900, P3D);
 	background(255);
 	bound = 1000;
-	xPos = -3000;
+	xPos = -15000;
 	yPos = 3200;
 	maxSize = 6400;
 	zoom = -5490;
@@ -15,7 +15,7 @@ public void setup() {
 	display = false;
 	starWars = false;
 	frameRate(5);
-
+	
 	
 }
 public void draw() {
@@ -34,17 +34,20 @@ public void draw() {
 		text("===Press Space to continue.===", width/2, 700);
 
 	} else if (display) {
+		
+		background(255);
+
 		if (starWars) {
-			xAxis = 55;
-			zoom = -900;
-			yPos -= 200;
+			xAxis = 65;
+			zoom = -300;
+			yPos -= 100;
+			background(0);
 		}
 
 		zoomMod = zoom/4;
 		if (zoom > 500) {zoom = 500;}
 		if (zoom < -16000) {zoom = -4000;}
 
-		background(255);
 		rotateX(radians(xAxis));
 		
 		translate(0, 0, zoom);
@@ -83,8 +86,18 @@ public void keyPressed() {
 	if (key == 'e') {zoom -= 20;}
 	if (key == 'r') {xAxis += 5;}
 	if (key == 'f') {xAxis -= 5;}
-	if (keyCode == 32) {menu = false; display = true;}
-	if (key == 'z') {starWars = true;}
+	if (keyCode == 32) {menu = !menu; display = !menu; 
+		bound = 1000;
+		xPos = -3000;
+		yPos = 3200;
+		maxSize = 6400;
+		zoom = -5490;
+		xAxis = 0;
+		starWars = false;
+		
+	}
+	if (key == 'z') {starWars = !starWars;}
+
 }
 
 /*sierpinski(x, y, x + len/2, y, x + len/4, y - (len/2)*(sqrt(3)/2));
