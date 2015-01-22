@@ -47,7 +47,8 @@ public void draw() {
 		text("WASD to move the screen.", width/2, 400);
 		text("Q/E to zoom in and out.", width/2, 500);
 		text("R/F to rotate triangle away from you.", width/2, 600);
-		text("===Press Space to continue.===", width/2, 700);
+		text("I won't tell you what z does. Try it!", width/2, 700);
+		text("===Press Space to continue.===", width/2, 800);
 
 	} else if (display) {
 		
@@ -110,10 +111,10 @@ public void keyPressed() {
 		zoom = -5490;
 		xAxis = 0;
 		starWars = false;
-		//popMatrix();
+		
 	}
-	if (key == 'z') {pushMatrix(); starWars = !starWars;}
-	if (key == 'x') {popMatrix();}
+	if (key == 'z') {starWars = !starWars;}
+
 }
 
 /*sierpinski(x, y, x + len/2, y, x + len/4, y - (len/2)*(sqrt(3)/2));

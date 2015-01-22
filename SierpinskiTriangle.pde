@@ -31,7 +31,8 @@ public void draw() {
 		text("WASD to move the screen.", width/2, 400);
 		text("Q/E to zoom in and out.", width/2, 500);
 		text("R/F to rotate triangle away from you.", width/2, 600);
-		text("===Press Space to continue.===", width/2, 700);
+		text("I won't tell you what z does. Try it!", width/2, 700);
+		text("===Press Space to continue.===", width/2, 800);
 
 	} else if (display) {
 		
